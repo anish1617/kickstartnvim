@@ -279,6 +279,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<space>-', require('oil').toggle_float)
     end,
   },
+  'tpope/vim-dadbod',
+  'kristijanhusak/vim-dadbod-completion',
+  'kristijanhusak/vim-dadbod-ui',
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
