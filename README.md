@@ -1,0 +1,2 @@
+# kickstartnvim
+kickstart nvim setup
