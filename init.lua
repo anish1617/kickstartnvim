@@ -398,7 +398,6 @@ require('lazy').setup({
       { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
-      
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -519,8 +518,7 @@ require('lazy').setup({
           enable_roslyn_analysers = true,
           enable_import_completion = true,
           organize_imports_on_format = true,
-          filetypes = {'cs', 'vb', 'csproj', 'sln', 'slnx' 'props', 'csx', 'targets'}
-
+          filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props', 'csx', 'targets' },
         },
         csharp_ls = {},
 
@@ -611,12 +609,15 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        csharp_ls = { 'csharpier' },
+        html = { 'html-beautify' },
+
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { 'prettier' },
       },
     },
   },
@@ -729,7 +730,7 @@ require('lazy').setup({
           { name = 'path' },
         },
       }
-    end, 
+    end,
   },
 
   { -- You can easily change to a different colorscheme.
