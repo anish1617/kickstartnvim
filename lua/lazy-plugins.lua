@@ -4,7 +4,6 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
-
   require 'kickstart/plugins/gitsigns',
 
   require 'kickstart/plugins/which-key',
@@ -31,6 +30,7 @@ require('lazy').setup({
   require 'kickstart/plugins/undotree',
   require 'kickstart/plugins/fugitive',
   require 'kickstart/plugins/dadbod',
+  require 'kickstart/plugins/toggleterm',
 
   require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
