@@ -1,10 +1,9 @@
-
 require('lazy').setup({
- 
-  'tpope/vim-sleuth', 
 
+  'tpope/vim-sleuth',
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
+
 
   require 'kickstart/plugins/gitsigns',
 
@@ -31,21 +30,20 @@ require('lazy').setup({
   require 'kickstart/plugins/dotnet',
   require 'kickstart/plugins/undotree',
   require 'kickstart/plugins/fugitive',
+  require 'kickstart/plugins/dadbod',
 
-  
   require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
 
-
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
 }, {
   ui = {
-    
+
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
       config = '🛠',

@@ -30,7 +30,7 @@ return {
         name = 'launch - netcoredbg',
         request = 'launch',
         program = function()
-          return vim.fn.input('Path to dll ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+          return vim.fn.input('Path to dll ', vim.fn.getcwd() .. '\\bin\\Debug\\', 'file')
         end,
       },
     }
@@ -92,11 +92,9 @@ return {
     end)
 
     dapui.setup {
-      -- Set icons to characters that are more likely to work in every terminal.
-      --    Feel free to remove or use ones that you like more! :)
-      --    Don't feel like these are good choices.
-      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+      icons = { expanded = '▾', collapsed = '▸', current_frame = '▸' },
       mappings = {
+        -- Use a table to apply multiple mappings
         expand = { '<CR>', '<2-LeftMouse>' },
         open = 'o',
         remove = 'd',
@@ -104,7 +102,18 @@ return {
         repl = 'r',
         toggle = 't',
       },
+      -- Use this to override mappings for specific elements
       element_mappings = {},
+      -- Expand lines larger than the window
+      -- Requires >= 0.7
+      expand_lines = vim.fn.has 'nvim-0.7' == 1,
+      -- Layouts define sections of the screen to place windows.
+      -- The position can be "left", "right", "top" or "bottom".
+      -- The size specifies the height/width depending on position. It can be an Int
+      -- or a Float. Integer specifies height/width directly (i.e. 20 lines/columns) while
+      -- Float value specifies percentage (i.e. 0.3 - 30% of available lines/columns)
+      -- Elements are the elements shown in the layout (in order).
+      -- Layouts are opened in order so that earlier layouts take priority in window sizing.
       layouts = {
         {
           elements = {
@@ -127,22 +136,26 @@ return {
         },
       },
       controls = {
+        -- Requires Neovim nightly (or 0.8 when released)
+        enabled = true,
+        -- Display controls in this element
+        element = 'repl',
         icons = {
           pause = '⏸',
           play = '▶',
           step_into = '⏎',
           step_over = '⏭',
           step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
+          step_back = '',
+          run_last = '↻',
+          terminate = '□',
           disconnect = '⏏',
         },
       },
       floating = {
         max_height = nil, -- These can be integers or a float between 0 and 1.
         max_width = nil, -- Floats will be treated as percentage of your screen.
-        border = 'single', -- Border style. Can be "single", "double" or "rounded"
+        border = 'rounded', -- Border style. Can be "single", "double" or "rounded"
         mappings = {
           close = { 'q', '<Esc>' },
         },
