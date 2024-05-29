@@ -33,6 +33,17 @@ return {
           return vim.fn.input('Path to dll ', vim.fn.getcwd() .. '\\bin\\Debug\\', 'file')
         end,
       },
+      {
+        type = 'coreclr',
+        name = 'attach - webapplication',
+        request = 'attach',
+        processId = function()
+          return vim.fn.input 'processId '
+        end,
+        program = function()
+          return vim.fn.input('Path to dll ', vim.fn.getcwd() .. '\\bin\\Debug\\', 'file')
+        end,
+      },
     }
 
     dap.set_log_level 'DEBUG'
@@ -48,14 +59,15 @@ return {
       },
     }
 
+    require('nvim-dap-virtual-text').setup()
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set('n', '<F5>', function()
       require('dap').continue()
     end)
-    vim.keymap.set('n', '<F10>', function()
+    vim.keymap.set('n', '<F9>', function()
       require('dap').step_over()
     end)
-    vim.keymap.set('n', '<F11>', function()
+    vim.keymap.set('n', '<F10>', function()
       require('dap').step_into()
     end)
     vim.keymap.set('n', '<F12>', function()
