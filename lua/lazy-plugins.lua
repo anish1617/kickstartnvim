@@ -32,7 +32,7 @@ require('lazy').setup({
   require 'kickstart/plugins/dadbod',
   require 'kickstart/plugins/toggleterm',
 
-  require 'kickstart.plugins.chatgpt',
+  -- require 'kickstart.plugins.chatgpt',
   require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
