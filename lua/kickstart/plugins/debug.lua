@@ -18,6 +18,15 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+    local masonPath
+    if vim.fn.has 'win32' == 1 then
+      masonPath = '\\mason\\bin\\netcoredbg.exe'
+    elseif vim.fn.has 'linux' == 1 then
+      masonPath = '/mason/bin/netcoredbg'
+    end
+
+    local netcoredbgCommand = vim.fn.stdpath 'data' .. masonPath
+
     dap.adapters.coreclr = {
       type = 'executable',
       command = 'netcoredbg',
@@ -55,7 +64,7 @@ return {
 
       ensure_installed = {
         -- -- Update this to ensure that you have the debuggers for the langs you want
-        -- 'netcoredbg',
+        'coreclr',
       },
     }
 
