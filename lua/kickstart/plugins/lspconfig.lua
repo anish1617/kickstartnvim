@@ -12,16 +12,13 @@ return {
       { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
-   
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
-        
           local map = function(keys, func, desc)
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-       
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
           -- Find references for the word under your cursor.
@@ -86,7 +83,6 @@ return {
             })
           end
 
-        
           if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -95,11 +91,9 @@ return {
         end,
       })
 
-    
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-   
       local servers = {
         csharp_ls = {},
         omnisharp = {
@@ -110,9 +104,10 @@ return {
           enable_decompilation_support = true,
           filetypes = { 'cs', 'vb', 'csproj', 'sln', 'slnx', 'props', 'csx', 'targets' },
         },
-        
-        tsserver = {},
 
+        tsserver = {
+          capabilities = capabilities,
+        },
 
         lua_ls = {
           -- cmd = {...},
@@ -123,22 +118,23 @@ return {
               completion = {
                 callSnippet = 'Replace',
               },
-            
+
               -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
       }
 
-     
       require('mason').setup()
 
-   
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', 
+        'stylua',
         'csharpier',
         'prettier',
+        'typescript-language-server',
+        'tailwindcss-language-server',
+        'css-lsp',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -154,4 +150,3 @@ return {
     end,
   },
 }
-
